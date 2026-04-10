@@ -1,28 +1,28 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Zap, Loader2, AlertCircle, CheckCircle2, ArrowRight } from "lucide-react";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Zap, Loader2, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function RegisterPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
   const [formData, setFormData] = useState({
-    shop_name: "",
-    owner_name: "",
-    phone: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    address_text: "",
+    shop_name: '',
+    owner_name: '',
+    phone: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    address_text: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,24 +31,24 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setError('Passwords do not match');
       return;
     }
 
     if (formData.password.length < 8) {
-      setError("Password must be at least 8 characters");
+      setError('Password must be at least 8 characters');
       return;
     }
 
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           shop_name: formData.shop_name,
           owner_name: formData.owner_name,
@@ -62,14 +62,14 @@ export default function RegisterPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Registration failed");
+        setError(data.error || 'Registration failed');
         return;
       }
 
       setSuccess(true);
-      setTimeout(() => router.push("/login"), 3000);
+      setTimeout(() => router.push('/login'), 3000);
     } catch {
-      setError("An unexpected error occurred. Please try again.");
+      setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -80,21 +80,32 @@ export default function RegisterPage() {
       <div className="flex min-h-screen items-center justify-center bg-background p-4 mesh-bg">
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-shop/5 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: "3s" }} />
+          <div
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-float"
+            style={{ animationDelay: '3s' }}
+          />
         </div>
 
         <Card className="relative z-10 w-full max-w-md glass animate-scale-in">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center space-y-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-success/10 animate-in" data-delay="1">
+            <div
+              className="flex h-16 w-16 items-center justify-center rounded-full bg-success/10 animate-in"
+              data-delay="1"
+            >
               <CheckCircle2 className="h-8 w-8 text-success" />
             </div>
             <div className="space-y-2 animate-in" data-delay="2">
-              <h2 className="font-heading text-xl font-bold text-foreground">Registration Submitted!</h2>
+              <h2 className="font-heading text-xl font-bold text-foreground">
+                Registration Submitted!
+              </h2>
               <p className="text-sm text-text-secondary">
-                Your shop registration is pending admin approval. You will be notified once reviewed.
+                Your shop registration is pending admin approval. You will be notified once
+                reviewed.
               </p>
             </div>
-            <p className="text-xs text-text-tertiary animate-in" data-delay="3">Redirecting to login...</p>
+            <p className="text-xs text-text-tertiary animate-in" data-delay="3">
+              Redirecting to login...
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -105,7 +116,10 @@ export default function RegisterPage() {
     <div className="flex min-h-screen items-center justify-center bg-background p-4 mesh-bg">
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-shop/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: "3s" }} />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: '3s' }}
+        />
       </div>
 
       <div className="relative z-10 w-full max-w-lg animate-in" data-delay="2">
@@ -116,8 +130,12 @@ export default function RegisterPage() {
               <Zap className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="font-heading text-xl font-bold tracking-tight text-foreground">NexusDistribute</h1>
-              <p className="text-xs text-text-tertiary uppercase tracking-widest">Register Your Shop</p>
+              <h1 className="font-heading text-xl font-bold tracking-tight text-foreground">
+                NexusDistribute
+              </h1>
+              <p className="text-xs text-text-tertiary uppercase tracking-widest">
+                Register Your Shop
+              </p>
             </div>
           </div>
         </div>

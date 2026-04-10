@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ThemeToggle } from "./theme-toggle";
+import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ThemeToggle } from './theme-toggle';
 import {
   LayoutDashboard,
   ShoppingCart,
@@ -23,28 +23,34 @@ import {
   LogOut,
   Bell,
   Zap,
-} from "lucide-react";
+} from 'lucide-react';
 
 const navItems = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard, section: "overview" },
-  { href: "/admin/orders", label: "Orders", icon: ShoppingCart, section: "operations" },
-  { href: "/admin/orders/review", label: "Review Queue", icon: AlertTriangle, section: "operations", badge: true },
-  { href: "/admin/shops", label: "Shops", icon: Users, section: "operations" },
-  { href: "/admin/products", label: "Products", icon: Package, section: "catalog" },
-  { href: "/admin/prices", label: "Pricing", icon: Tag, section: "catalog" },
-  { href: "/admin/inventory", label: "Inventory", icon: Warehouse, section: "catalog" },
-  { href: "/admin/delivery", label: "Delivery", icon: Truck, section: "logistics" },
-  { href: "/admin/announcements", label: "Announcements", icon: Megaphone, section: "logistics" },
-  { href: "/admin/disputes", label: "Disputes", icon: AlertTriangle, section: "logistics" },
-  { href: "/admin/settings", label: "Settings", icon: Settings, section: "system" },
+  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, section: 'overview' },
+  { href: '/admin/orders', label: 'Orders', icon: ShoppingCart, section: 'operations' },
+  {
+    href: '/admin/orders/review',
+    label: 'Review Queue',
+    icon: AlertTriangle,
+    section: 'operations',
+    badge: true,
+  },
+  { href: '/admin/shops', label: 'Shops', icon: Users, section: 'operations' },
+  { href: '/admin/products', label: 'Products', icon: Package, section: 'catalog' },
+  { href: '/admin/prices', label: 'Pricing', icon: Tag, section: 'catalog' },
+  { href: '/admin/inventory', label: 'Inventory', icon: Warehouse, section: 'catalog' },
+  { href: '/admin/delivery', label: 'Delivery', icon: Truck, section: 'logistics' },
+  { href: '/admin/announcements', label: 'Announcements', icon: Megaphone, section: 'logistics' },
+  { href: '/admin/disputes', label: 'Disputes', icon: AlertTriangle, section: 'logistics' },
+  { href: '/admin/settings', label: 'Settings', icon: Settings, section: 'system' },
 ];
 
 const sections = [
-  { key: "overview", label: "Overview" },
-  { key: "operations", label: "Operations" },
-  { key: "catalog", label: "Catalog" },
-  { key: "logistics", label: "Logistics" },
-  { key: "system", label: "System" },
+  { key: 'overview', label: 'Overview' },
+  { key: 'operations', label: 'Operations' },
+  { key: 'catalog', label: 'Catalog' },
+  { key: 'logistics', label: 'Logistics' },
+  { key: 'system', label: 'System' },
 ];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
@@ -52,7 +58,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const isActive = (href: string) => {
-    if (href === "/admin") return pathname === "/admin" || pathname === "/admin/dashboard";
+    if (href === '/admin') return pathname === '/admin' || pathname === '/admin/dashboard';
     return pathname?.startsWith(href);
   };
 
@@ -69,8 +75,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       {/* Floating glass sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 glass-panel transition-transform duration-300 lg:static lg:translate-x-0",
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          'fixed inset-y-0 left-0 z-50 w-64 glass-panel transition-transform duration-300 lg:static lg:translate-x-0',
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         <div className="flex h-full flex-col">
@@ -81,8 +87,12 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 <Zap className="h-4 w-4 text-primary-foreground" />
               </div>
               <div>
-                <span className="font-heading text-sm font-bold tracking-tight text-foreground">Nexus</span>
-                <span className="block text-[10px] font-medium uppercase tracking-widest text-text-tertiary">Admin</span>
+                <span className="font-heading text-sm font-bold tracking-tight text-foreground">
+                  Nexus
+                </span>
+                <span className="block text-[10px] font-medium uppercase tracking-widest text-text-tertiary">
+                  Admin
+                </span>
               </div>
             </div>
             <Button
@@ -114,17 +124,24 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                           key={item.href}
                           href={item.href}
                           className={cn(
-                            "group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
+                            'group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                             active
-                              ? "bg-primary/10 text-primary"
-                              : "text-text-secondary hover:bg-surface-2/50 hover:text-foreground"
+                              ? 'bg-primary/10 text-primary'
+                              : 'text-text-secondary hover:bg-surface-2/50 hover:text-foreground'
                           )}
                           onClick={() => setSidebarOpen(false)}
                         >
                           {active && (
                             <span className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--admin-glow)/0.6)]" />
                           )}
-                          <item.icon className={cn("h-4 w-4 flex-shrink-0 transition-colors", active ? "text-primary" : "text-text-tertiary group-hover:text-text-secondary")} />
+                          <item.icon
+                            className={cn(
+                              'h-4 w-4 flex-shrink-0 transition-colors',
+                              active
+                                ? 'text-primary'
+                                : 'text-text-tertiary group-hover:text-text-secondary'
+                            )}
+                          />
                           <span className="flex-1">{item.label}</span>
                           {item.badge && (
                             <Badge variant="warning" size="sm" className="ml-auto">
@@ -144,7 +161,11 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <div className="border-t border-border/30 p-4 space-y-3">
             <div className="flex items-center justify-between">
               <ThemeToggle />
-              <Button variant="ghost" size="sm" className="text-text-secondary hover:text-foreground gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-text-secondary hover:text-foreground gap-2"
+              >
                 <LogOut className="h-4 w-4" />
                 Sign Out
               </Button>
@@ -167,7 +188,11 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           </Button>
 
           <div className="flex items-center gap-3 ml-auto">
-            <Button variant="ghost" size="icon" className="relative h-9 w-9 text-text-secondary hover:text-foreground">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative h-9 w-9 text-text-secondary hover:text-foreground"
+            >
               <Bell className="h-4 w-4" />
               <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-warning text-[8px] font-bold text-background shadow-[0_0_6px_hsl(var(--warning-glow)/0.6)]">
                 3
@@ -180,7 +205,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto p-4 lg:p-6 animate-in" data-delay="1">
+        <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8 animate-in" data-delay="1">
           {children}
         </main>
       </div>

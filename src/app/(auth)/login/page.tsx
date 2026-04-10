@@ -1,52 +1,52 @@
-"use client";
+'use client';
 
-import { useState, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Zap, Loader2, AlertCircle, ArrowRight } from "lucide-react";
+import { useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Zap, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "";
+  const callbackUrl = searchParams.get('callbackUrl') || '';
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Login failed");
+        setError(data.error || 'Login failed');
         return;
       }
 
       const role = data.user?.role;
-      if (role === "admin") router.push(callbackUrl || "/admin");
-      else if (role === "shop") router.push(callbackUrl || "/shop");
-      else if (role === "delivery") router.push(callbackUrl || "/delivery");
-      else router.push("/");
+      if (role === 'admin') router.push(callbackUrl || '/admin');
+      else if (role === 'shop') router.push(callbackUrl || '/shop');
+      else if (role === 'delivery') router.push(callbackUrl || '/delivery');
+      else router.push('/');
 
       router.refresh();
     } catch {
-      setError("An unexpected error occurred. Please try again.");
+      setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -57,7 +57,10 @@ function LoginForm() {
       {/* Floating orbs background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-shop/5 rounded-full blur-3xl animate-float" style={{ animationDelay: "3s" }} />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-shop/5 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: '3s' }}
+        />
       </div>
 
       <div className="relative z-10 w-full max-w-md animate-in" data-delay="2">
@@ -68,7 +71,9 @@ function LoginForm() {
               <Zap className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="font-heading text-xl font-bold tracking-tight text-foreground">NexusDistribute</h1>
+              <h1 className="font-heading text-xl font-bold tracking-tight text-foreground">
+                NexusDistribute
+              </h1>
               <p className="text-xs text-text-tertiary uppercase tracking-widest">B2B Platform</p>
             </div>
           </div>
@@ -150,7 +155,8 @@ function LoginForm() {
         {/* Demo credentials */}
         <div className="mt-6 text-center animate-in" data-delay="8">
           <p className="text-xs text-text-tertiary">
-            Demo: <span className="font-mono text-text-secondary">admin@nexusdistribute.com</span> / <span className="font-mono text-text-secondary">password123</span>
+            Demo: <span className="font-mono text-text-secondary">admin@nexusdistribute.com</span> /{' '}
+            <span className="font-mono text-text-secondary">password123</span>
           </p>
         </div>
       </div>
@@ -160,11 +166,13 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <Loader2 className="h-8 w-8 animate-spin text-text-tertiary" />
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-background">
+          <Loader2 className="h-8 w-8 animate-spin text-text-tertiary" />
+        </div>
+      }
+    >
       <LoginForm />
     </Suspense>
   );

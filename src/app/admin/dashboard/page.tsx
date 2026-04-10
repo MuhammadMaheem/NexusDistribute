@@ -1,8 +1,8 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { Separator } from '@/components/ui/separator';
 import {
   Package,
   Users,
@@ -14,7 +14,7 @@ import {
   ChevronRight,
   ArrowUpRight,
   ArrowDownRight,
-} from "lucide-react";
+} from 'lucide-react';
 
 const stats = {
   revenueToday: 125000,
@@ -28,19 +28,49 @@ const stats = {
 };
 
 const recentActivity = [
-  { id: 1, type: "order", message: "New order #ORD-001 from Al-Falah Store", time: "2 min ago", status: "pending" },
-  { id: 2, type: "payment", message: "Payment of Rs 25,000 received from City Mart", time: "15 min ago", status: "credit" },
-  { id: 3, type: "delivery", message: "Order #ORD-098 delivered by Ahmed", time: "1 hour ago", status: "delivered" },
-  { id: 4, type: "review", message: "Order #ORD-102 flagged for review (over limit)", time: "2 hours ago", status: "warning" },
-  { id: 5, type: "order", message: "Order #ORD-099 merged with #ORD-100", time: "3 hours ago", status: "info" },
+  {
+    id: 1,
+    type: 'order',
+    message: 'New order #ORD-001 from Al-Falah Store',
+    time: '2 min ago',
+    status: 'pending',
+  },
+  {
+    id: 2,
+    type: 'payment',
+    message: 'Payment of Rs 25,000 received from City Mart',
+    time: '15 min ago',
+    status: 'credit',
+  },
+  {
+    id: 3,
+    type: 'delivery',
+    message: 'Order #ORD-098 delivered by Ahmed',
+    time: '1 hour ago',
+    status: 'delivered',
+  },
+  {
+    id: 4,
+    type: 'review',
+    message: 'Order #ORD-102 flagged for review (over limit)',
+    time: '2 hours ago',
+    status: 'warning',
+  },
+  {
+    id: 5,
+    type: 'order',
+    message: 'Order #ORD-099 merged with #ORD-100',
+    time: '3 hours ago',
+    status: 'info',
+  },
 ];
 
 const topShops = [
-  { name: "Al-Falah Store", orders: 45, revenue: 280000, balance: 120000, limit: 200000 },
-  { name: "City Mart", orders: 38, revenue: 245000, balance: 85000, limit: 200000 },
-  { name: "Royal Traders", orders: 32, revenue: 198000, balance: 160000, limit: 200000 },
-  { name: "Green Valley", orders: 28, revenue: 175000, balance: 45000, limit: 200000 },
-  { name: "Metro Supplies", orders: 25, revenue: 162000, balance: 92000, limit: 200000 },
+  { name: 'Al-Falah Store', orders: 45, revenue: 280000, balance: 120000, limit: 200000 },
+  { name: 'City Mart', orders: 38, revenue: 245000, balance: 85000, limit: 200000 },
+  { name: 'Royal Traders', orders: 32, revenue: 198000, balance: 160000, limit: 200000 },
+  { name: 'Green Valley', orders: 28, revenue: 175000, balance: 45000, limit: 200000 },
+  { name: 'Metro Supplies', orders: 25, revenue: 162000, balance: 92000, limit: 200000 },
 ];
 
 function ActivityIcon({ type }: { type: string }) {
@@ -59,14 +89,14 @@ function ActivityIcon({ type }: { type: string }) {
 
 function StatusBadge({ status }: { status: string }) {
   const variants: Record<string, string> = {
-    pending: "warning",
-    credit: "success",
-    delivered: "success",
-    warning: "warning",
-    info: "info",
+    pending: 'warning',
+    credit: 'success',
+    delivered: 'success',
+    warning: 'warning',
+    info: 'info',
   };
   return (
-    <Badge variant={(variants[status] as any) || "default"}>
+    <Badge variant={(variants[status] as any) || 'default'}>
       {status.charAt(0).toUpperCase() + status.slice(1)}
     </Badge>
   );
@@ -77,7 +107,9 @@ export default function AdminDashboard() {
     <div className="space-y-6">
       {/* Header */}
       <div className="animate-in" data-delay="1">
-        <h1 className="font-heading text-2xl font-bold tracking-tight text-foreground">Dashboard</h1>
+        <h1 className="font-heading text-2xl font-bold tracking-tight text-foreground">
+          Dashboard
+        </h1>
         <p className="text-sm text-text-secondary mt-1">Overview of your distribution platform</p>
       </div>
 
@@ -86,7 +118,9 @@ export default function AdminDashboard() {
         {/* Revenue Today */}
         <Card className="glass animate-in" data-delay="2" glow>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs font-medium text-text-secondary uppercase tracking-wider">Revenue Today</CardTitle>
+            <CardTitle className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+              Revenue Today
+            </CardTitle>
             <TrendingUp className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
@@ -103,7 +137,9 @@ export default function AdminDashboard() {
         {/* Outstanding Balance */}
         <Card className="glass animate-in" data-delay="3" glow>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs font-medium text-text-secondary uppercase tracking-wider">Outstanding</CardTitle>
+            <CardTitle className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+              Outstanding
+            </CardTitle>
             <Users className="h-4 w-4 text-admin" />
           </CardHeader>
           <CardContent>
@@ -120,11 +156,15 @@ export default function AdminDashboard() {
         {/* Active Orders */}
         <Card className="glass animate-in" data-delay="4" glow>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs font-medium text-text-secondary uppercase tracking-wider">Active Orders</CardTitle>
+            <CardTitle className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+              Active Orders
+            </CardTitle>
             <ShoppingCart className="h-4 w-4 text-shop" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-mono tabular-nums text-foreground">{stats.activeOrders}</div>
+            <div className="text-2xl font-bold font-mono tabular-nums text-foreground">
+              {stats.activeOrders}
+            </div>
             <div className="flex items-center gap-2 mt-1">
               <Badge variant="warning" size="sm">
                 {stats.pendingReview} in review
@@ -136,17 +176,23 @@ export default function AdminDashboard() {
         {/* Alerts */}
         <Card className="glass animate-in" data-delay="5" glow>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs font-medium text-text-secondary uppercase tracking-wider">Alerts</CardTitle>
+            <CardTitle className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+              Alerts
+            </CardTitle>
             <AlertTriangle className="h-4 w-4 text-warning" />
           </CardHeader>
           <CardContent>
             <div className="flex gap-4">
               <div>
-                <div className="text-lg font-bold font-mono tabular-nums text-foreground">{stats.lowStockItems}</div>
+                <div className="text-lg font-bold font-mono tabular-nums text-foreground">
+                  {stats.lowStockItems}
+                </div>
                 <p className="text-[10px] text-text-tertiary uppercase tracking-wider">Low Stock</p>
               </div>
               <div>
-                <div className="text-lg font-bold font-mono tabular-nums text-foreground">{stats.expiringDeadlines}</div>
+                <div className="text-lg font-bold font-mono tabular-nums text-foreground">
+                  {stats.expiringDeadlines}
+                </div>
                 <p className="text-[10px] text-text-tertiary uppercase tracking-wider">Expiring</p>
               </div>
             </div>
@@ -160,7 +206,9 @@ export default function AdminDashboard() {
         <Card className="glass lg:col-span-4 animate-in" data-delay="6">
           <CardHeader>
             <CardTitle className="text-base">Monthly Revenue</CardTitle>
-            <CardDescription className="text-xs">Revenue per day for the current month</CardDescription>
+            <CardDescription className="text-xs">
+              Revenue per day for the current month
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex h-[280px] items-end gap-1">
@@ -216,7 +264,9 @@ export default function AdminDashboard() {
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle className="text-base">Top Shops</CardTitle>
-            <CardDescription className="text-xs">Shops ranked by monthly order volume</CardDescription>
+            <CardDescription className="text-xs">
+              Shops ranked by monthly order volume
+            </CardDescription>
           </div>
           <Button variant="glass" size="sm" className="gap-1">
             View All
@@ -238,14 +288,20 @@ export default function AdminDashboard() {
                     </span>
                     <div>
                       <p className="text-sm font-medium text-foreground">{shop.name}</p>
-                      <p className="text-xs text-text-tertiary">{shop.orders} orders • Rs {shop.revenue.toLocaleString()} revenue</p>
+                      <p className="text-xs text-text-tertiary">
+                        {shop.orders} orders • Rs {shop.revenue.toLocaleString()} revenue
+                      </p>
                     </div>
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-bold font-mono tabular-nums text-foreground">
                       Rs {shop.balance.toLocaleString()}
                     </p>
-                    <Progress value={utilization} variant={utilization > 80 ? "warning" : "shop"} className="h-1 w-20 mt-1" />
+                    <Progress
+                      value={utilization}
+                      variant={utilization > 80 ? 'warning' : 'shop'}
+                      className="h-1 w-20 mt-1"
+                    />
                   </div>
                 </div>
               );

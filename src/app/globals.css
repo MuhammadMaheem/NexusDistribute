@@ -92,7 +92,7 @@
 }
 
 /* --- Light mode overrides (still dark-ish, just lighter) --- */
-[data-theme="light"],
+[data-theme='light'],
 .light {
   --background: 220 20% 97%;
   --surface-1: 220 15% 100%;
@@ -126,12 +126,20 @@
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading), system-ui, sans-serif;
     letter-spacing: -0.02em;
   }
 
-  code, kbd, pre, .font-mono {
+  code,
+  kbd,
+  pre,
+  .font-mono {
     font-family: var(--font-mono), ui-monospace, monospace;
   }
 
@@ -142,7 +150,9 @@
 
   /* Respect motion preference */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -156,14 +166,30 @@
   .animate-in {
     animation: fadeInUp 0.5s ease-out both;
   }
-  .animate-in[data-delay="1"] { animation-delay: 50ms; }
-  .animate-in[data-delay="2"] { animation-delay: 100ms; }
-  .animate-in[data-delay="3"] { animation-delay: 150ms; }
-  .animate-in[data-delay="4"] { animation-delay: 200ms; }
-  .animate-in[data-delay="5"] { animation-delay: 250ms; }
-  .animate-in[data-delay="6"] { animation-delay: 300ms; }
-  .animate-in[data-delay="7"] { animation-delay: 350ms; }
-  .animate-in[data-delay="8"] { animation-delay: 400ms; }
+  .animate-in[data-delay='1'] {
+    animation-delay: 50ms;
+  }
+  .animate-in[data-delay='2'] {
+    animation-delay: 100ms;
+  }
+  .animate-in[data-delay='3'] {
+    animation-delay: 150ms;
+  }
+  .animate-in[data-delay='4'] {
+    animation-delay: 200ms;
+  }
+  .animate-in[data-delay='5'] {
+    animation-delay: 250ms;
+  }
+  .animate-in[data-delay='6'] {
+    animation-delay: 300ms;
+  }
+  .animate-in[data-delay='7'] {
+    animation-delay: 350ms;
+  }
+  .animate-in[data-delay='8'] {
+    animation-delay: 400ms;
+  }
 
   /* Number count-up */
   .animate-count {
@@ -225,7 +251,8 @@
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 8px hsl(var(--warning-glow) / 0.3);
   }
   50% {
@@ -243,12 +270,18 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -338,7 +371,11 @@
   .btn-glow::before {
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.8), hsl(calc(var(--primary) + 30) / 0.8));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.8),
+      hsl(calc(var(--primary) + 30) / 0.8)
+    );
   }
 
   .btn-glow:hover::before {
@@ -511,12 +548,7 @@
   .shimmer::after {
     content: '';
     @apply absolute inset-0;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--surface-3) / 0.4),
-      transparent
-    );
+    background: linear-gradient(90deg, transparent, hsl(var(--surface-3) / 0.4), transparent);
     animation: shimmer 2s ease-in-out infinite;
   }
 
